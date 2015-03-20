@@ -9,11 +9,37 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	<!-- Database Configuration -->
 	<import resource="hibernate.cfg.xml"/>
  
- 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-    	<property name="configLocation" value="classpath:hibernate.cfg.xml" />
-	</bean>
-	<!-- Auto scan the components -->
-	<context:component-scan 
-		base-package="us.renedo.find.hibu" />
+	<bean id="dataSource"
+            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="org.postgresql.Driver" />
+            <property name="url" value="jdbc:postgresql://localhost/hibu" />
+            <property name="username" value="hibu" />
+            <property name="password" value="hibu" />
+    </bean>
  
+ 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    		<property name="dataSource">
+                  <ref bean="dataSource" />
+            </property>
+			<property name="packagesToScan">
+			    <list>
+			        <value>us.renedo.find.hibu.entity</value>
+			    </list>
+			</property>
+            <property name="hibernateProperties">
+                  <props>
+                        <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                        <prop key="hibernate.show_sql">true</prop>
+                  </props>
+            </property>
+	</bean>
+ 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+   <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+   
+   
+	<!-- Auto scan the components -->
+	<context:component-scan base-package="us.renedo.find.hibu" />
 </beans>

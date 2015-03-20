@@ -1,66 +1,59 @@
 package us.renedo.find.hibu;
 
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import us.renedo.find.hibu.bo.DomainBo;
 import us.renedo.find.hibu.entity.Domain;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest extends TestCase{
+public class AppTest{
+	private final static String NAME = "lala.es";
+	private final static String WHOIS = "whois lala.es";
 	
-	private static appContext = null;
+	private static ApplicationContext appContext = null;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
+		
     	appContext = 
     	    	  new ClassPathXmlApplicationContext("BeanLocations.xml");
 	}
 	
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
+    @Test
     public void testApp()
     {
         assertTrue( true );
     }
 
+    @Test
     public void testDB()
     {
         Domain domain = new Domain();
-        domain.setDomain("lala.es");
-        domain.setWhois("pp ss");
-        
-        
-    }
+        domain.setDomain(NAME);
+        domain.setWhois(WHOIS);
 
-    public void testApp()
-    {
-        assertTrue( true );
+        DomainBo domainBo = (DomainBo)appContext.getBean("domainBo");
+        
+        Long id = domainBo.save(domain);
+        assertNotNull(id);
+        
+        domain = domainBo.get(id);
+        assertNotNull(domain);
+        assertEquals(NAME, domain.getDomain());
+        assertEquals(WHOIS, domain.getWhois());
+        
+        domainBo.delete(domain);
+
+        domain = domainBo.get(id);
+
+        assertNull(domain);
     }
 }

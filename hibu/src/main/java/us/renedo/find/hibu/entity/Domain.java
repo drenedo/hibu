@@ -17,9 +17,10 @@ public class Domain {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "domain", unique = true, nullable = false)
+	@Column(name = "domain", unique = true, nullable = false, columnDefinition="LONGTEXT")
 	private String domain;
 	
+	@Column(columnDefinition="LONGTEXT")
 	private String whois;
 
 	public Long getId() {
