@@ -19,6 +19,15 @@ public class Domain {
 
 	@Column(name = "domain", unique = true, nullable = false, columnDefinition="LONGTEXT")
 	private String domain;
+
+	@Column(columnDefinition="LONGTEXT")
+	private String telf;
+
+	@Column(columnDefinition="LONGTEXT")
+	private String dir;
+	
+	@Column(columnDefinition="LONGTEXT")
+	private String name;
 	
 	@Column(columnDefinition="LONGTEXT")
 	private String whois;
@@ -45,6 +54,30 @@ public class Domain {
 
 	public void setWhois(String whois) {
 		this.whois = whois;
+	}
+
+	public String getTelf() {
+		return telf;
+	}
+
+	public void setTelf(String telf) {
+		this.telf = telf;
+	}
+
+	public String getDir() {
+		return dir;
+	}
+
+	public void setDir(String dir) {
+		this.dir = dir;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	

@@ -1,13 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:util="http://www.springframework.org/schema/util"
+xmlns:akka="http://akka.io/schema/akka"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+http://akka.io/schema/akka http://akka.io/akka-1.1.3.xsd">
  
 	<!-- Database Configuration -->
-	<import resource="hibernate.cfg.xml"/>
  
 	<bean id="dataSource"
             class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -42,4 +46,23 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
    
 	<!-- Auto scan the components -->
 	<context:component-scan base-package="us.renedo.find.hibu" />
+	
+	<!-- Akka -->
+	
+	 <akka:supervision id="supervisor">
+ 
+		<akka:restart-strategy failover="AllForOne" retries="3" timerange="1000">
+			<akka:trap-exits>
+				<akka:trap-exit>java.io.IOException</akka:trap-exit>
+			</akka:trap-exits>
+		</akka:restart-strategy>
+ 
+		<akka:typed-actors>
+			<akka:typed-actor 
+			interface="us.renedo.find.hibu.actor.DataActor"
+			implementation="us.renedo.find.hibu.actor.impl.DataActorImpl"
+			lifecycle="permanent"
+			timeout="1000" />
+		</akka:typed-actors>
+	</akka:supervision>
 </beans>
