@@ -19,11 +19,19 @@ public class DomainBoImpl implements DomainBo{
 		return domainDao.save(domain);
 	}
 
+	public void update(Domain domain){
+		domainDao.update(domain);
+	}
+
 	public void delete(Domain domain){
 		domainDao.delete(domain);
 	}
 
 	public Domain get(Long id){
 		return domainDao.get(id);
+	}
+
+	public Domain getByDomain(String domain){
+		return domainDao.getByDomain(domain);
 	}
 }

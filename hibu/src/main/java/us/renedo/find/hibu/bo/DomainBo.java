@@ -6,4 +6,6 @@ public interface DomainBo {
 	public Long save(Domain domain);
 	public void delete(Domain domain);
 	public Domain get(Long id);
+	public Domain getByDomain(String domain);
+	public void update(Domain domain);
 }
