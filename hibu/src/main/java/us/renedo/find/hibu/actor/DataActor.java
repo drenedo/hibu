@@ -1,9 +1,11 @@
 package us.renedo.find.hibu.actor;
 
-import us.renedo.find.hibu.bo.DomainBo;
+import org.springframework.context.ApplicationContext;
+
 
 public interface DataActor {
 
 	public void proc(String url,Integer page);
-	public void setDomainBo(DomainBo domainBo);
+	public void procNoAsync(String url,Integer page,ApplicationContext appContext);
+	
 }

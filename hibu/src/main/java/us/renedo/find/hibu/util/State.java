@@ -3,7 +3,9 @@ package us.renedo.find.hibu.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class State {
+import com.ning.http.client.AsyncHttpClientConfig;
+
+public class State {	
 	private static List<Integer> pagesWhitOutReponse = new ArrayList<Integer>();
 	private static List<Integer> pagesNodata = new ArrayList<Integer>();
 
@@ -30,4 +32,5 @@ public class State {
 	public static void resetPagesWhitNoData() {
 		pagesWhitOutReponse = new ArrayList<Integer>();
 	}
+	
 }

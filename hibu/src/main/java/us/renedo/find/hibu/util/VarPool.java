@@ -7,7 +7,17 @@ public class VarPool {
 	public static final int PORT = 8118;
 	public static final int WAIT = 20000;
 	
-	public static final String[] WHAT = {/*"Restaurante","Farmacia","Abogado","Taller","Talleres","Seguridad","Academia","Seguro","Hotel",*/"Libreria","Boda","Residencia","Gestoria","Gimnasio","Guarderia","Carniceria","Fruteria","Charcuteria","Bar","Ventanas","Puertas","Suelos","Trabajos","Modista","Bodega","Autobuses","Pasteleria","Moda","Optica","Gourmet","Joyeria","Servicios","Construccion","Almacen"};
+	//public static final String[] WHAT = {"Restaurante","Farmacia","Abogado","Taller","Talleres","Seguridad","Academia","Seguro","Hotel","Libreria","Boda","Residencia","Gestoria","Gimnasio","Guarderia","Carniceria","Fruteria","Charcuteria","Bar","Ventanas","Puertas","Suelos","Trabajos","Modista","Bodega","Autobuses","Pasteleria","Moda","Optica","Gourmet","Joyeria","Servicios","Construccion","Almacen"};
+	public static final String[] WHAT = {"Reformas","Construccion","Pintura","Fontaneros",
+	"Albañileria","Electricidad","Carpintería","Más Reformas","Hogar",
+	"Toldos","Jardinerias","Jardineria","Muebles","Baño","Cocina",
+	"Aire","acondicionado","Hogar","Gastronomia","Bares","Pasteleria",
+	"tapas","Tienda","Ropa","Zapatos","Muebles","Disfraces","Novias",
+	"Joyerías","Motor","Talleres","Automovil","Motos","Camiones",
+	"Furgonetas","Salud","Fisioterapia","Farmacias","Dentistas",
+	"Psicologos","Opticas","Limpieza","Centros","Estetica","Veterinario",
+	"Peluqueria","Mudanza","Inmobiliaria","Cerrajeria","Guarderia"};
+
 	
 	public final static String URL_START = "http://www.paginasamarillas.es/search/all-ac/all-ma/all-pr/all-is/all-ci/all-ba/all-pu/all-nc/";
 	public final static String URL_END = "?co=Burgos&where=burgos&ub=false&qc=false";
