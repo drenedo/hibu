@@ -47,4 +47,11 @@ public class DomainDaoImpl extends DaoSupport implements DomainDao{
 		else
 			return null;
 	}
+
+	@Override
+	public List<Domain> getByProvince(String province,String cp, String telf) {
+		String hql = "FROM Domain where dir like '%"+province+"%' or telf like '"+telf+"%' or dir like '%"+cp+"%'";
+		Query query = getSession().createQuery(hql);
+		return query.list();
+	}
 }

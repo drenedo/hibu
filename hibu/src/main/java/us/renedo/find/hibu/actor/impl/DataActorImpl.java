@@ -17,6 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import us.renedo.find.hibu.DomainSearch;
 import us.renedo.find.hibu.actor.DataActor;
+import us.renedo.find.hibu.actor.GenericActor;
 import us.renedo.find.hibu.bo.DomainBo;
 import us.renedo.find.hibu.entity.Domain;
 import us.renedo.find.hibu.util.State;
@@ -32,8 +33,7 @@ import com.ning.http.client.Response;
 import akka.actor.TypedActor;
 
 
-public final class DataActorImpl extends TypedActor implements DataActor {
-	private DomainBo domainBo;
+public final class DataActorImpl extends GenericActor implements DataActor {
 
 	@Override
 	public void preStart() {}{		
@@ -52,7 +52,6 @@ public final class DataActorImpl extends TypedActor implements DataActor {
 		SyncRead srMain = new SyncRead();
 		State.addPageWhitNoData(page);
 		
-		try {
 			String content = srMain.getUrl(url, new Proxy(Proxy.Type.HTTP, new InetSocketAddress(VarPool.PROXY, VarPool.PORT)));
 			
 			Document document = Jsoup.parse(content);
@@ -134,12 +133,6 @@ public final class DataActorImpl extends TypedActor implements DataActor {
 				}catch(Exception e){e.printStackTrace();}
 			}
 			State.removePageWhitNoData(page);
-		} catch (MalformedURLException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}finally{
-		}
 		
 	}
 	

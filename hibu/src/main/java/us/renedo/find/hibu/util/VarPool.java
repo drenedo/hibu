@@ -2,6 +2,7 @@ package us.renedo.find.hibu.util;
 
 public class VarPool {
 	public static final String SHARP = "#";
+	public static final String BLANK = "";
 	
 	public static final String PROXY = "127.0.0.1";
 	public static final int PORT = 8118;

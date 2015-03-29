@@ -63,6 +63,11 @@ http://akka.io/schema/akka http://akka.io/akka-1.1.3.xsd">
 			implementation="us.renedo.find.hibu.actor.impl.DataActorImpl"
 			lifecycle="permanent"
 			timeout="1000" />
+			<akka:typed-actor 
+			interface="us.renedo.find.hibu.actor.WhoisActor"
+			implementation="us.renedo.find.hibu.actor.impl.WhoisActorImpl"
+			lifecycle="permanent"
+			timeout="1000" />
 		</akka:typed-actors>
 	</akka:supervision>
 </beans>

@@ -1,5 +1,7 @@
 package us.renedo.find.hibu.bo.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -34,4 +36,9 @@ public class DomainBoImpl implements DomainBo{
 	public Domain getByDomain(String domain){
 		return domainDao.getByDomain(domain);
 	}
+
+	public List<Domain> getByProvince(String province,String cp, String telf){
+		return domainDao.getByProvince(province,cp,telf);
+	}
+	
 }
