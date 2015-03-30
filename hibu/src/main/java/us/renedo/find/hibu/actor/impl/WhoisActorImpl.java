@@ -9,6 +9,7 @@ import us.renedo.find.hibu.actor.GenericActor;
 import us.renedo.find.hibu.actor.WhoisActor;
 import us.renedo.find.hibu.bo.DomainBo;
 import us.renedo.find.hibu.entity.Domain;
+import us.renedo.find.hibu.util.State;
 import us.renedo.find.hibu.util.SyncRead;
 
 public class WhoisActorImpl extends GenericActor implements WhoisActor {
@@ -17,6 +18,9 @@ public class WhoisActorImpl extends GenericActor implements WhoisActor {
 
 	@Override
 	public void proc(Domain domain,ApplicationContext appContext) {
+		
+		State.sumVerify();
+		
 		this.domainBo = (DomainBo)appContext.getBean("domainBo");
 		
 		SyncRead sr = new SyncRead();
@@ -40,6 +44,8 @@ public class WhoisActorImpl extends GenericActor implements WhoisActor {
 		domain.setWhois(String.valueOf(coincidences));
 		
 		domainBo.update(domain);
+		
+		State.subVerify();
 	}
 
 }

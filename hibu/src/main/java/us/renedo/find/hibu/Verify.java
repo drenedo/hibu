@@ -9,6 +9,8 @@ import akka.config.TypedActorConfigurator;
 import us.renedo.find.hibu.actor.WhoisActor;
 import us.renedo.find.hibu.bo.DomainBo;
 import us.renedo.find.hibu.entity.Domain;
+import us.renedo.find.hibu.util.State;
+import us.renedo.find.hibu.util.VarPool;
 
 public class Verify {
 	static public ApplicationContext appContext = new ClassPathXmlApplicationContext("BeanLocations.xml");
@@ -28,6 +30,7 @@ public class Verify {
 				 
 				 whoisActor.proc(domain, appContext);
 				 
+				 System.out.println("Currents:"+State.getCurrentVerify());
 				 if(i%15==0){
 					 try {
 						 Thread.sleep(60000);
